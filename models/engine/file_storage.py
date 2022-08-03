@@ -43,3 +43,4 @@ class FileStorage:
             dict[key] = value.to_dict()
         with open(FileStorage.__file_path, 'w') as fp:
             json.dump(dict, fp)
+
