@@ -29,6 +29,13 @@ class FileStorage(BaseModel):
             key = '{} {}'.format(obj.__class__.__name__, obj.id )
             self.__objects[key] = obj
     def reload(self):
-        
+        if __file_path:
+            try:
+                with open(self.__file_path, 'r') as fp:
+                    self.__objects = json.load(fp)
+
+            except:
+                    pass
     def save(self):
-        pass
+        with open(self.__file_path, 'w+') as fp:
+            json.dump(self.__objects, fp)
