@@ -1,10 +1,9 @@
 #!/usr/bin/python3
 from curses import setupterm
 from sys import settrace
-from models.base_model import BaseModel
 import json
 from os.path import exists
-class FileStorage(BaseModel):
+class FileStorage:
 
     __file_path = "file.json"
     __objects = {}
