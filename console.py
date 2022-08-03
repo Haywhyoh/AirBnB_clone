@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 import cmd
-from models.engine.file_storage import FileStorage
+from models import storage
 from models.base_model import BaseModel
 
 
@@ -29,6 +29,7 @@ Ex: $ create BaseModel
         elif arg == self.classes[0]:
             # Incomplete, still waiting for FileStorage
             new_model = BaseModel()
+            new_model.save()
             print(new_model.id)
         elif arg == self.classes[1]:
             # Incomplete, still waiting for FileStorage
@@ -66,40 +67,43 @@ Ex: $ show BaseModel 1234-1234-1234
             print("** class name missing **")
         elif arg[0] not in self.classes:
             print("** class doesn't exist **")
-        elif arg == self.classes[0]:
+        elif arg[0] == self.classes[0]:
             try:
-                print(arg[1])
+                if arg[0] + "." + arg[1] in storage.all():
+                    print(storage.all()[arg[0] + "." + arg[1]])
+                else:
+                    print('** no instance found **')
             except (IndexError):
                 print("** instance id missing **")
-        elif arg == self.classes[1]:
-            # Incomplete, still waiting for FileStorage
-            try:
-                print(arg[1])
-            except (IndexError):
-                print("** instance id missing **")
-            # Incomplete, still waiting for FileStorage
-        elif arg == self.classes[2]:
-            # Incomplete, still waiting for FileStorage
-            try:
-                print(arg[1])
-            except (IndexError):
-                print("** instance id missing **")
-            # Incomplete, still waiting for FileStorage
-        elif arg == self.classes[3]:
+        elif arg[0] == self.classes[1]:
             # Incomplete, still waiting for FileStorage
             try:
                 print(arg[1])
             except (IndexError):
                 print("** instance id missing **")
             # Incomplete, still waiting for FileStorage
-        elif arg == self.classes[4]:
+        elif arg[0] == self.classes[2]:
             # Incomplete, still waiting for FileStorage
             try:
                 print(arg[1])
             except (IndexError):
                 print("** instance id missing **")
             # Incomplete, still waiting for FileStorage
-        elif arg == self.classes[5]:
+        elif arg[0] == self.classes[3]:
+            # Incomplete, still waiting for FileStorage
+            try:
+                print(arg[1])
+            except (IndexError):
+                print("** instance id missing **")
+            # Incomplete, still waiting for FileStorage
+        elif arg[0] == self.classes[4]:
+            # Incomplete, still waiting for FileStorage
+            try:
+                print(arg[1])
+            except (IndexError):
+                print("** instance id missing **")
+            # Incomplete, still waiting for FileStorage
+        elif arg[0] == self.classes[5]:
             # Incomplete, still waiting for FileStorage
             try:
                 print(arg[1])
@@ -125,12 +129,12 @@ $ destroy BaseModel 1234-1234-1234
             print("** class name missing **")
         elif arg[0] not in self.classes:
             print("** class doesn't exist **")
-        elif arg == self.classes[0]:
+        elif arg[0] == self.classes[0]:
             try:
                 print(arg[1])
             except (IndexError):
                 print("** instance id missing **")
-        elif arg == self.classes[1]:
+        elif arg[0] == self.classes[1]:
             # Incomplete, still waiting for FileStorage
             try:
                 print(arg[1])
