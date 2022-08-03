@@ -3,6 +3,7 @@ from curses import setupterm
 from sys import settrace
 from models.base_model import BaseModel
 import json
+from os.path import exists
 class FileStorage(BaseModel):
 
     __file_path = "file.json"
@@ -27,15 +28,18 @@ class FileStorage(BaseModel):
     def new(self, obj):
         if obj:
             key = '{} {}'.format(obj.__class__.__name__, obj.id )
-            self.__objects[key] = obj
+            FileStorage.__objects[key] = obj
     def reload(self):
-        if __file_path:
-            try:
-                with open(self.__file_path, 'r') as fp:
-                    self.__objects = json.load(fp)
-
-            except:
-                    pass
+        if exists(FileStorage.__file_path):
+            with open(FileStorage.__file_path, 'r') as fp:
+                for key, value in json.load(fp).items():
+                    my_dict = {}
+                    my_dict[key] = value.to_dict()
+            FileStorage.__objects = my_dict
+        
     def save(self):
-        with open(self.__file_path, 'w+') as fp:
-            json.dump(self.__objects, fp)
+        dict = {}
+        for key, value in FileStorage.__objects.items():
+            dict[key] = value.to_dict()
+        with open(FileStorage.__file_path, 'w') as fp:
+            json.dump(dict, fp)
