@@ -23,7 +23,7 @@ class FileStorage:
     # def get_object(self, object)
 
     def all(self):
-        return self.__objects
+        return FileStorage.__objects
     def new(self, obj):
         if obj:
             key = '{}.{}'.format(obj.__class__.__name__, obj.id )
