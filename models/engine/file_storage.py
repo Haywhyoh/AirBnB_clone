@@ -30,13 +30,13 @@ class FileStorage:
             FileStorage.__objects[key] = obj
     def reload(self):
         from models.base_model import BaseModel
-        class_dict = {"BaseModel" : BaseModel}
+        from models.user import User
+        class_dict = {"BaseModel" : BaseModel, "User": User}
         if exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, 'r') as fp:
                 new_dict = json.load(fp)
                 for key, value in new_dict.items():
                     self.new(class_dict[value['__class__']](**value))
-        
     def save(self):
         dict = {}
         for key, value in FileStorage.__objects.items():
