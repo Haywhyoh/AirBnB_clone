@@ -5,12 +5,15 @@ from models.base_model import BaseModel
 import json
 class FileStorage(BaseModel):
 
-    def __init__(self):
-        self.file_path = file_path
+    __file_path = "file.json"
+    __objects = {}
+    # def __init__(self, file_path, object):
+    #     self.__file_path = file_path
+    #     self.__
 
-    @property
-    def file_path(self):
-        return self.__file_path
+    # @property
+    # def get_file_path(self):
+    #     return self.__file_path
     
     # @set_file_path.setter
     # def set_file_path(self, file_path):
