@@ -3,6 +3,8 @@ from curses import setupterm
 from sys import settrace
 import json
 from os.path import exists
+
+
 class FileStorage:
 
     __file_path = "file.json"
@@ -13,7 +15,7 @@ class FileStorage:
 
     def new(self, obj):
         if obj:
-            key = '{}.{}'.format(obj.__class__.__name__, obj.id )
+            key = '{}.{}'.format(obj.__class__.__name__, obj.id)
             FileStorage.__objects[key] = obj
 
     def reload(self):
@@ -24,8 +26,8 @@ class FileStorage:
         from models.place import Place
         from models.amenity import Amenity
         from models.review import Review
- 
-        class_dict = {"BaseModel" : BaseModel,
+
+        class_dict = {"BaseModel": BaseModel,
                       "User": User,
                       "State": State,
                       "City": City,
@@ -44,4 +46,3 @@ class FileStorage:
             dict[key] = value.to_dict()
         with open(FileStorage.__file_path, 'w') as fp:
             json.dump(dict, fp)
-
