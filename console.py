@@ -221,10 +221,16 @@ Ex: $ all BaseModel or $ all.
         '''
         if arg not in self.classes and arg != '':
             print("** class doesn't exist **")
-        else:
+        elif arg == "":
             res = []
             for key in storage.all():
                 res.append(str(storage.all()[key]))
+            print(res)
+        else:
+            res = []
+            for key in storage.all():
+                if key.split('.')[0] == arg:
+                    res.append(str(storage.all()[key]))
             print(res)
 
     def do_update(self, arg):
