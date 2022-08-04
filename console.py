@@ -136,6 +136,7 @@ Ex: $ show BaseModel 1234-1234-1234
                     print("** instance id missing **")
         except (IndexError):
             print("** class name missing **")
+
     def do_destroy(self, arg):
         '''
 Deletes an instance based on the class name
@@ -210,7 +211,7 @@ $ destroy BaseModel 1234-1234-1234
                 except (IndexError):
                     print("** instance id missing **")
         except (IndexError):
-                print("** class name missing **")
+            print("** class name missing **")
 
     def do_all(self, arg):
         '''
