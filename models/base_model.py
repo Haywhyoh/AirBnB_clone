@@ -8,6 +8,7 @@ import uuid
 from datetime import datetime as dt
 from models import storage
 
+
 class BaseModel():
     """
     BaseModel class (or object) defines the common attributes
