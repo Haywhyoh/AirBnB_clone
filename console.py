@@ -4,6 +4,11 @@ import cmd
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
@@ -39,24 +44,29 @@ Ex: $ create BaseModel
             print(new_user.id)
         elif arg == self.classes[2]:
             # Incomplete, still waiting for FileStorage
-            new_model = BaseModel()
-            print(new_model.id)
+            new_place = Place()
+            new_place.save()
+            print(new_place.id)
         elif arg == self.classes[3]:
             # Incomplete, still waiting for FileStorage
-            new_model = BaseModel()
-            print(new_model.id)
+            new_state = State()
+            new_state.save()
+            print(new_state.id)
         elif arg == self.classes[4]:
             # Incomplete, still waiting for FileStorage
-            new_model = BaseModel()
-            print(new_model.id)
+            new_city = City()
+            new_city.save()
+            print(new_city.id)
         elif arg == self.classes[5]:
             # Incomplete, still waiting for FileStorage
-            new_model = BaseModel()
-            print(new_model.id)
+            new_amenity = Amenity()
+            new_amenity.save()
+            print(new_amenity.id)
         else:
             # Incomplete, still waiting for FileStorage
-            new_model = BaseModel()
-            print(new_model.id)
+            new_review = Review()
+            new_review.save()
+            print(new_review.id)
 
     def do_show(self, arg):
         '''
@@ -85,42 +95,48 @@ Ex: $ show BaseModel 1234-1234-1234
                 except (IndexError):
                     print("** instance id missing **")
             elif arg[0] == self.classes[2]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        print(storage.all()[arg[0] + "." + arg[1]])
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
             elif arg[0] == self.classes[3]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        print(storage.all()[arg[0] + "." + arg[1]])
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
             elif arg[0] == self.classes[4]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        print(storage.all()[arg[0] + "." + arg[1]])
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
             elif arg[0] == self.classes[5]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        print(storage.all()[arg[0] + "." + arg[1]])
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
             else:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        print(storage.all()[arg[0] + "." + arg[1]])
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
         except (IndexError):
             print("** class name missing **")
+
     def do_destroy(self, arg):
         '''
 Deletes an instance based on the class name
@@ -150,42 +166,52 @@ $ destroy BaseModel 1234-1234-1234
                 except (IndexError):
                     print("** instance id missing **")
             elif arg[0] == self.classes[2]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        storage.all().__delitem__(arg[0] + "." + arg[1])
+                        storage.save()
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
             elif arg[0] == self.classes[3]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        storage.all().__delitem__(arg[0] + "." + arg[1])
+                        storage.save()
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
             elif arg[0] == self.classes[4]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        storage.all().__delitem__(arg[0] + "." + arg[1])
+                        storage.save()
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
             elif arg[0] == self.classes[5]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        storage.all().__delitem__(arg[0] + "." + arg[1])
+                        storage.save()
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
             else:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
+                    if arg[0] + "." + arg[1] in storage.all():
+                        storage.all().__delitem__(arg[0] + "." + arg[1])
+                        storage.save()
+                    else:
+                        print('** no instance found **')
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
         except (IndexError):
-                print("** class name missing **")
+            print("** class name missing **")
 
     def do_all(self, arg):
         '''
@@ -200,7 +226,6 @@ Ex: $ all BaseModel or $ all.
             for key in storage.all():
                 res.append(str(storage.all()[key]))
             print(res)
-            # Incomplete, still waiting for FileStorage
 
     def do_update(self, arg):
         '''
@@ -220,7 +245,6 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                     if key in storage.all():
                         try:
                             if arg[2] in storage.all()[key].to_dict():
-                                print("okay")
                                 try:
                                     setattr(storage.all()[key], arg[2], arg[3])
                                     storage.all()[key].save()
@@ -228,12 +252,10 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                                     print("** value missing **")
                             else:
                                 print("** value missing **")
-                                print(storage.all())
                         except (IndexError):
                             print("** attribute name missing **")
                     else:
                         print("** no instance found **")
-                        # Incomplete, still waiting for FileStorage
                 except (IndexError):
                     print("** instance id missing **")
             elif arg[0] == self.classes[1]:
@@ -242,7 +264,6 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                     if key in storage.all():
                         try:
                             if arg[2] in storage.all()[key].to_dict():
-                                print("okay")
                                 try:
                                     setattr(storage.all()[key], arg[2], arg[3])
                                     storage.all()[key].save()
@@ -250,84 +271,107 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                                     print("** value missing **")
                             else:
                                 print("** value missing **")
-                                print(storage.all())
                         except (IndexError):
                             print("** attribute name missing **")
                     else:
                         print("** no instance found **")
-                        # Incomplete, still waiting for FileStorage
                 except (IndexError):
                     print("** instance id missing **")
             elif arg[0] == self.classes[2]:
-                # Incomplete, still waiting for FileStorage
                 try:
-                    print(arg[1])
-                    try:
-                        print(arg[2])
-                    except (IndexError):
-                        print("** attribute name missing **")
-                        # Incomplete, still waiting for FileStorage
-                except (IndexError):
-                    print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
-            elif arg[0] == self.classes[3]:
-                # Incomplete, still waiting for FileStorage
-                try:
-                    print(arg[1])
-                    try:
-                        print(arg[2])
-                    except (IndexError):
-                        print("** attribute name missing **")
-                        # Incomplete, still waiting for FileStorage
-                except (IndexError):
-                    print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
-            elif arg[0] == self.classes[4]:
-                # Incomplete, still waiting for FileStorage
-                try:
-                    print(arg[1])
-                    try:
-                        print(arg[2])
-                    except (IndexError):
-                        print("** attribute name missing **")
-                        # Incomplete, still waiting for FileStorage
-                except (IndexError):
-                    print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
-            elif arg[0] == self.classes[5]:
-                # Incomplete, still waiting for FileStorage
-                try:
-                    print(arg[1])
-                    try:
-                        print(arg[2])
-                    except (IndexError):
-                        print("** attribute name missing **")
-                        # Incomplete, still waiting for FileStorage
-                except (IndexError):
-                    print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
-            else:
-                # Incomplete, still waiting for FileStorage
-                try:
-                    print(arg[1])
-                    try:
-                        print(arg[2])
+                    key = arg[0] + "." + arg[1]
+                    if key in storage.all():
                         try:
-                            print(arg[3])
+                            if arg[2] in storage.all()[key].to_dict():
+                                try:
+                                    setattr(storage.all()[key], arg[2], arg[3])
+                                    storage.all()[key].save()
+                                except (IndexError):
+                                    print("** value missing **")
+                            else:
+                                print("** value missing **")
                         except (IndexError):
-                            print("** value missing **")
-                            # Incomplete, still waiting for FileStorage
-                    except (IndexError):
-                        print("** attribute name missing **")
-                        # Incomplete, still waiting for FileStorage
+                            print("** attribute name missing **")
+                    else:
+                        print("** no instance found **")
                 except (IndexError):
                     print("** instance id missing **")
-                # Incomplete, still waiting for FileStorage
-                    try:
-                        print(arg[2])
-                    except (IndexError):
-                        print("** attribute name missing **")
-                        # Incomplete, still waiting for FileStorage
+            elif arg[0] == self.classes[3]:
+                try:
+                    key = arg[0] + "." + arg[1]
+                    if key in storage.all():
+                        try:
+                            if arg[2] in storage.all()[key].to_dict():
+                                try:
+                                    setattr(storage.all()[key], arg[2], arg[3])
+                                    storage.all()[key].save()
+                                except (IndexError):
+                                    print("** value missing **")
+                            else:
+                                print("** value missing **")
+                        except (IndexError):
+                            print("** attribute name missing **")
+                    else:
+                        print("** no instance found **")
+                except (IndexError):
+                    print("** instance id missing **")
+            elif arg[0] == self.classes[4]:
+                try:
+                    key = arg[0] + "." + arg[1]
+                    if key in storage.all():
+                        try:
+                            if arg[2] in storage.all()[key].to_dict():
+                                try:
+                                    setattr(storage.all()[key], arg[2], arg[3])
+                                    storage.all()[key].save()
+                                except (IndexError):
+                                    print("** value missing **")
+                            else:
+                                print("** value missing **")
+                        except (IndexError):
+                            print("** attribute name missing **")
+                    else:
+                        print("** no instance found **")
+                except (IndexError):
+                    print("** instance id missing **")
+            elif arg[0] == self.classes[5]:
+                try:
+                    key = arg[0] + "." + arg[1]
+                    if key in storage.all():
+                        try:
+                            if arg[2] in storage.all()[key].to_dict():
+                                try:
+                                    setattr(storage.all()[key], arg[2], arg[3])
+                                    storage.all()[key].save()
+                                except (IndexError):
+                                    print("** value missing **")
+                            else:
+                                print("** value missing **")
+                        except (IndexError):
+                            print("** attribute name missing **")
+                    else:
+                        print("** no instance found **")
+                except (IndexError):
+                    print("** instance id missing **")
+            else:
+                try:
+                    key = arg[0] + "." + arg[1]
+                    if key in storage.all():
+                        try:
+                            if arg[2] in storage.all()[key].to_dict():
+                                try:
+                                    setattr(storage.all()[key], arg[2], arg[3])
+                                    storage.all()[key].save()
+                                except (IndexError):
+                                    print("** value missing **")
+                            else:
+                                print("** value missing **")
+                        except (IndexError):
+                            print("** attribute name missing **")
+                    else:
+                        print("** no instance found **")
+                except (IndexError):
+                    print("** instance id missing **")
         except (IndexError):
             print("** class name missing **")
 
