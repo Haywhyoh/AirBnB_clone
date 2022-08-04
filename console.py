@@ -168,6 +168,32 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                     key = line[0] + "." + line[1].split('(')[1][1:-2]
                     if key in storage.all():
                         print(storage.all()[key])
+                    else:
+                        print('** no instance found **')
+                elif line[1].split("(")[0] == commands[2]:
+                    key = line[0] + "." + line[1].split('(')[1][1:-2]
+                    if key in storage.all():
+                        storage.all().__delitem__(key)
+                        storage.save()
+                    else:
+                        print('** no instance found **')
+                elif line[1].split("(")[0] == commands[3]:
+                    data = line[1].split("(")[1][1:-2].split('", "')
+                    key = line[0] + "." + data[0]
+                    if key in storage.all():
+                        try:
+                            if data[1] in storage.all()[key].to_dict():
+                                try:
+                                    setattr(storage.all()[key], data[1], data[2])
+                                    storage.all()[key].save()
+                                except (IndexError):
+                                    print("** value missing **")
+                            else:
+                                print("** value missing **")
+                        except (IndexError):
+                            print("** attribute name missing **")
+                    else:
+                        print('** no instance found **')
                 else:
                     print("** command not found **")
             else:
