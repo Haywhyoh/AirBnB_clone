@@ -14,13 +14,13 @@ from models.review import Review
 class HBNBCommand(cmd.Cmd):
     intro = 'Welcome to AirBnB console. Type help or ? to list commands.\n'
     prompt = '(hbnb) '
-    classes = {"BaseModel": BaseModel,
-               "User": User,
-               "Place": Place,
-               "State": State,
-               "City": City,
-               "Amenity": Amenity,
-               "Review": Review}
+    classes = ["BaseModel",
+               "User",
+               "Place",
+               "State",
+               "City",
+               "Amenity",
+               "Review"]
 
     def do_create(self, arg):
         '''
@@ -32,11 +32,10 @@ Ex: $ create BaseModel
             print("** class name missing **")
         elif arg not in self.classes:
             print("** class doesn't exist **")
-        elif arg in self.classes:
-            new_class = self.classes[arg]
-            new_class = new_class()
-            new_class.save()
-            print(new_class.id)
+        else:
+            instance = eval(arg)()
+            instance.save()
+            print(instance.id)
 
     def do_show(self, arg):
         '''
