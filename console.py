@@ -148,6 +148,34 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
     def emptyline(self):
         pass
 
+    def default(self, line: str) -> None:
+        commands = ["show",
+                    "all()",
+                    "destroy",
+                    "update",
+                    "count()"]
+        line = line.split('.')
+        try:
+            if line[0] in self.classes:
+                if line[1] == commands[1]:
+                    self.do_all(line[0])
+                elif line[1] == commands[4]:
+                    res = []
+                    for key in storage.all():
+                        if key.split('.')[0] == line[0]:
+                            res.append(str(storage.all()[key]))
+                    print(len(res))
+                elif line[1].split('(')[0] == commands[0]:
+                    key = line[0] + "." + line[1].split('(')[1][1:-2]
+                    if key in storage.all():
+                        print(storage.all()[key])
+                else:
+                    print("** command not found **")
+            else:
+                print("** Unknown syntax :", line[0])
+        except (IndexError):
+            print("** Unknown syntax :", line)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
