@@ -186,7 +186,8 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                             try:
                                 if data[1] in storage.all()[key].to_dict():
                                     try:
-                                        setattr(storage.all()[key], data[1], data[2])
+                                        setattr(storage.all()[key],
+                                                data[1], data[2])
                                         storage.all()[key].save()
                                     except (IndexError):
                                         print("** value missing **")
@@ -210,10 +211,12 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                                 else:
                                     for k in new_dict:
                                         if k in storage.all()[key].to_dict():
-                                            setattr(storage.all()[key], k, new_dict[k])
+                                            setattr(storage.all()[key], k,
+                                                    new_dict[k])
                                             storage.all()[key].save()
                                         else:
-                                            print("** value for " + str(k) + " missing **")   
+                                            print("** value for " + str(k) +
+                                                  " missing **")
                             except (IndexError, SyntaxError):
                                 print("omoo this your dictionary ehn")
                         else:
