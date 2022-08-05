@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import cmd
+from ast import literal_eval
 from models import storage
 from models.base_model import BaseModel
 from models.user import User
@@ -178,22 +179,45 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                     else:
                         print('** no instance found **')
                 elif line[1].split("(")[0] == commands[3]:
-                    data = line[1].split("(")[1][1:-2].split('", "')
-                    key = line[0] + "." + data[0]
-                    if key in storage.all():
-                        try:
-                            if data[1] in storage.all()[key].to_dict():
-                                try:
-                                    setattr(storage.all()[key], data[1], data[2])
-                                    storage.all()[key].save()
-                                except (IndexError):
+                    if line[1][-2] != "}":
+                        data = line[1].split("(")[1][1:-2].split('", "')
+                        key = line[0] + "." + data[0]
+                        if key in storage.all():
+                            try:
+                                if data[1] in storage.all()[key].to_dict():
+                                    try:
+                                        setattr(storage.all()[key], data[1], data[2])
+                                        storage.all()[key].save()
+                                    except (IndexError):
+                                        print("** value missing **")
+                                else:
                                     print("** value missing **")
-                            else:
-                                print("** value missing **")
-                        except (IndexError):
-                            print("** attribute name missing **")
+                            except (IndexError):
+                                print("** attribute name missing **")
+                        else:
+                            print('** no instance found **')
                     else:
-                        print('** no instance found **')
+                        data = line[1].split("(")[1][1:-1].split('", ')
+                        key = line[0] + "." + data[0]
+                        new_dict = '", '.join(data[1:])
+                        if key in storage.all():
+                            try:
+                                new_dict = literal_eval(new_dict)
+                                if len(new_dict) == 0:
+                                    print("** attribute name missing **")
+                                elif type(new_dict) == set:
+                                    print("** value missing **")
+                                else:
+                                    for k in new_dict:
+                                        if k in storage.all()[key].to_dict():
+                                            setattr(storage.all()[key], k, new_dict[k])
+                                            storage.all()[key].save()
+                                        else:
+                                            print("** value for " + str(k) + " missing **")   
+                            except (IndexError, SyntaxError):
+                                print("omoo this your dictionary ehn")
+                        else:
+                            print('** no instance found **')
                 else:
                     print("** command not found **")
             else:
