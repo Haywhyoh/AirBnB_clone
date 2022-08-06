@@ -97,15 +97,13 @@ Ex: $ all BaseModel or $ all.
             res = []
             for key in storage.all():
                 res.append(str(storage.all()[key]))
+            print(res)
         else:
             res = []
             for key in storage.all():
                 if key.split('.')[0] == arg:
                     res.append(str(storage.all()[key]))
-            if len(res) > 0:
-                print(res) 
-            else:
-                print("** class doesn't exist **")
+            print(res)
 
     def do_update(self, arg):
         '''
