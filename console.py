@@ -16,7 +16,7 @@ class HBNBCommand(cmd.Cmd):
 
     """Class for the command interpreter."""
 
-    #intro = 'Welcome to AirBnB console. Type help or ? to list commands.\n'
+    # intro = 'Welcome to AirBnB console. Type help or ? to list commands.\n'
     prompt = '(hbnb) '
     classes = ["BaseModel",
                "User",
@@ -124,7 +124,8 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                             if arg[2] in storage.all()[key].to_dict():
                                 try:
                                     if arg[3][1:-1] != "":
-                                        setattr(storage.all()[key], arg[2], arg[3][1:-1])
+                                        setattr(storage.all()[key],
+                                                arg[2], arg[3][1:-1])
                                         storage.all()[key].save()
                                     else:
                                         print("** value missing **")
@@ -143,13 +144,14 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
 
     def do_quit(self, arg):
         'Quit command to exit the program\n'
-        quit()
-        #return True
+        # quit()
+        return True
 
     def do_EOF(self, arg):
         'Quit command to exit the program\n'
-        quit()
-        #return True
+        print()
+        # quit()
+        return True
 
     def emptyline(self):
         pass
