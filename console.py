@@ -138,12 +138,12 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
     def do_quit(self, arg):
         'Quit command to exit the program\n'
         quit()
-        return True
+        #return True
 
     def do_EOF(self, arg):
         'Quit command to exit the program\n'
         quit()
-        return True
+        #return True
 
     def emptyline(self):
         pass
