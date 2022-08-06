@@ -199,7 +199,7 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                     if line[1][-2] != "}":
                         data = line[1].split("(")[1][1:-2].split('", "')
                         key = line[0] + "." + data[0]
-                        if key in storage.all():
+                        if key in storage.all() and len(data[2].split()) != 0:
                             try:
                                 if data[1] in storage.all()[key].to_dict():
                                     try:
@@ -209,7 +209,12 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                                     except (IndexError):
                                         print("** value missing **")
                                 else:
-                                    print("** value missing **")
+                                    try:
+                                        setattr(storage.all()[key],
+                                                data[1], data[2])
+                                        storage.all()[key].save()
+                                    except (IndexError):
+                                        print("** value missing **")
                             except (IndexError):
                                 print("** attribute name missing **")
                         else:
@@ -227,13 +232,9 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                                     print("** value missing **")
                                 else:
                                     for k in new_dict:
-                                        if k in storage.all()[key].to_dict():
-                                            setattr(storage.all()[key], k,
-                                                    new_dict[k])
-                                            storage.all()[key].save()
-                                        else:
-                                            print("** value for " + str(k) +
-                                                  " missing **")
+                                        setattr(storage.all()[key], k,
+                                                new_dict[k])
+                                        storage.all()[key].save()
                             except (IndexError, SyntaxError):
                                 print("omoo this your dictionary ehn")
                         else:
