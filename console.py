@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Module for the cammand interpreter"""
 
 import cmd
 from ast import literal_eval
