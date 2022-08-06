@@ -133,7 +133,8 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                                 except (IndexError):
                                     print("** value missing **")
                             else:
-                                print("** value missing **")
+                                pass
+                                # print("** value missing **")
                         except (IndexError):
                             print("** attribute name missing **")
                     else:
