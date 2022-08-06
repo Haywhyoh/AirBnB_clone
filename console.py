@@ -136,12 +136,12 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
             print("** class name missing **")
 
     def do_quit(self, arg):
-        'Quit command to exit the program'
+        'Quit command to exit the program\n'
         quit()
         return True
 
     def do_EOF(self, arg):
-        'Quit command to exit the program'
+        'Quit command to exit the program\n'
         quit()
         return True
 
