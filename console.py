@@ -199,7 +199,7 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                     if line[1][-2] != "}":
                         data = line[1].split("(")[1][1:-2].split('", "')
                         key = line[0] + "." + data[0]
-                        if key in storage.all() and len(data[2].split()) != 0 :
+                        if key in storage.all() and len(data[2].split()) != 0:
                             try:
                                 if data[1] in storage.all()[key].to_dict():
                                     try:
