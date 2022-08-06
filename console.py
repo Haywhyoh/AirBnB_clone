@@ -97,13 +97,15 @@ Ex: $ all BaseModel or $ all.
             res = []
             for key in storage.all():
                 res.append(str(storage.all()[key]))
-            print(res)
         else:
             res = []
             for key in storage.all():
                 if key.split('.')[0] == arg:
                     res.append(str(storage.all()[key]))
-            print(res)
+            if len(res) > 0:
+                print(res) 
+            else:
+                print("** class doesn't exist **")
 
     def do_update(self, arg):
         '''
@@ -133,8 +135,7 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                                 except (IndexError):
                                     print("** value missing **")
                             else:
-                                pass
-                                # print("** value missing **")
+                                print("** value missing **")
                         except (IndexError):
                             print("** attribute name missing **")
                     else:
