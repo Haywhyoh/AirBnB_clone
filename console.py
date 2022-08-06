@@ -224,9 +224,9 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                 else:
                     print("** command not found **")
             else:
-                print("** Unknown syntax:", line[0])
+                print("*** Unknown syntax:", line[0])
         except (IndexError):
-            print("** Unknown syntax:", line)
+            print("*** Unknown syntax:", line)
 
 
 if __name__ == '__main__':
