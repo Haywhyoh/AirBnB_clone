@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+"""This module holds the Place object"""
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
+    """This is the class of the Place object"""
     city_id = ""
     user_id = ""
     name = ""
