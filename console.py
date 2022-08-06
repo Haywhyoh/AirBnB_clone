@@ -13,6 +13,9 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
+
+    """Class for the command interpreter."""
+
     #intro = 'Welcome to AirBnB console. Type help or ? to list commands.\n'
     prompt = '(hbnb) '
     classes = ["BaseModel",
