@@ -120,7 +120,7 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                         try:
                             if arg[2] in storage.all()[key].to_dict():
                                 try:
-                                    setattr(storage.all()[key], arg[2], arg[3])
+                                    setattr(storage.all()[key], arg[2], arg[3][1:-1])
                                     storage.all()[key].save()
                                 except (IndexError):
                                     print("** value missing **")
