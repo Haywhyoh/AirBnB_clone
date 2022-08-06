@@ -133,7 +133,15 @@ Usage: update <class name> <id> <attribute name> "<attribute value>"
                                 except (IndexError):
                                     print("** value missing **")
                             else:
-                                print("** value missing **")
+                                try:
+                                    if arg[3][1:-1] != "":
+                                        setattr(storage.all()[key],
+                                                arg[2], arg[3][1:-1])
+                                        storage.all()[key].save()
+                                    else:
+                                        print("** value missing **")
+                                except (IndexError):
+                                    print("** value missing **")
                         except (IndexError):
                             print("** attribute name missing **")
                     else:
