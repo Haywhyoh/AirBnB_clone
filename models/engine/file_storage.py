@@ -1,24 +1,31 @@
 #!/usr/bin/python3
-from curses import setupterm
-from sys import settrace
+"""This module holds the FileStorage object"""
 import json
 from os.path import exists
 
 
 class FileStorage:
-
+    """
+    This is the class of the FileStorage object
+    which handles the serialization
+    and deserialization of objects into
+    or out of a local file
+    """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
+        """ Returns all stored objects"""
         return FileStorage.__objects
 
     def new(self, obj):
+        """Creates the new object to be serialized"""
         if obj:
             key = '{}.{}'.format(obj.__class__.__name__, obj.id)
             FileStorage.__objects[key] = obj
 
     def reload(self):
+        """Deserialies from a local file"""
         from models.base_model import BaseModel
         from models.user import User
         from models.state import State
@@ -41,6 +48,7 @@ class FileStorage:
                     self.new(class_dict[value['__class__']](**value))
 
     def save(self):
+        """Serializes to a local file"""
         dict = {}
         for key, value in FileStorage.__objects.items():
             dict[key] = value.to_dict()
